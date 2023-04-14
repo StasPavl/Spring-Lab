@@ -2,12 +2,15 @@ package com.cydeo.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class UserAccount {
     @Id
@@ -28,5 +31,14 @@ public class UserAccount {
         this.email = email;
         this.password = password;
         this.username = username;
+
+    }
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                '}';
     }
 }
