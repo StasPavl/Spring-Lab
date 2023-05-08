@@ -1,13 +1,13 @@
 package com.cydeo.lab07ormqueries.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Customer {
 
@@ -25,6 +25,21 @@ public class Customer {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", cartList=" + cartList +
+                ", orderList=" + orderList +
+                ", balance=" + balance +
+                ", addressList=" + addressList +
+                '}';
     }
 
     @OneToMany(mappedBy = "customer")

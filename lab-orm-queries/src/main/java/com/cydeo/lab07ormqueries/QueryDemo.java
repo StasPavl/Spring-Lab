@@ -29,5 +29,7 @@ public class QueryDemo implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println(addressRepository.findAllByStreet("Pond"));
+        System.out.println(addressRepository.findAllByCustomer_Id(1L));
     }
 }

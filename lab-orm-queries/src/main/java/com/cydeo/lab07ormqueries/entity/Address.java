@@ -1,12 +1,13 @@
 package com.cydeo.lab07ormqueries.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Address {
 
@@ -17,6 +18,17 @@ public class Address {
     private String name;
     private String street;
     private String zipCode;
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", customer=" + customer +
+                '}';
+    }
 
     @ManyToOne
     private Customer customer;

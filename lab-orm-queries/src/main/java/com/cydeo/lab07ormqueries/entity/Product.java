@@ -1,14 +1,17 @@
 package com.cydeo.lab07ormqueries.entity;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Product {
 
@@ -20,6 +23,19 @@ public class Product {
     private BigDecimal price;
     private Integer quantity;
     private Integer remainingQuantity;
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", remainingQuantity=" + remainingQuantity +
+                ", categoryList=" + categoryList +
+                ", cartItemList=" + cartItemList +
+                '}';
+    }
 
     public Product(String name, BigDecimal price, Integer quantity, Integer remainingQuantity) {
         this.name = name;
