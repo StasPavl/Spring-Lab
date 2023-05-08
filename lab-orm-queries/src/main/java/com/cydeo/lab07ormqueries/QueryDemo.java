@@ -30,6 +30,9 @@ public class QueryDemo implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         System.out.println(addressRepository.findAllByStreet("Pond"));
-        System.out.println(addressRepository.findAllByCustomer_Id(1L));
+        System.out.println("Top 3 Addresses By Customer email" + addressRepository.findTop3ByCustomer_Email("dpetchell7@oracle.com"));
+        System.out.println("Address starting with" + addressRepository.findAllByStreetStartingWith("Eve"));
+        System.out.println("-------------------------");
+        System.out.println("Address by customer ID" + addressRepository.retrieveAllAddressesByCustomerId(3L));
     }
 }

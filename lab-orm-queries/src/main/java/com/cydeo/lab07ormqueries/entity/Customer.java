@@ -35,10 +35,10 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +
-                ", cartList=" + cartList +
-                ", orderList=" + orderList +
-                ", balance=" + balance +
-                ", addressList=" + addressList +
+//                ", cartList=" + cartList +
+//                ", orderList=" + orderList +
+//                ", balance=" + balance +
+//                ", addressList=" + addressList +
                 '}';
     }
 
