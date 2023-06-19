@@ -1,6 +1,7 @@
 package com.cydeo.lab08rest.controller;
 
 import com.cydeo.lab08rest.dto.OrderDTO;
+import com.cydeo.lab08rest.enums.PaymentMethod;
 import com.cydeo.lab08rest.model.ResponseWrapper;
 import com.cydeo.lab08rest.service.CartService;
 import com.cydeo.lab08rest.service.CustomerService;
@@ -35,5 +36,19 @@ public class OrderController {
         return ResponseEntity.ok(new ResponseWrapper("Order is updated", orderService.updateOrderById(id,orderDto), HttpStatus.OK));
     }
 
+    @PostMapping
+    public ResponseEntity<ResponseWrapper> createOrder(@RequestBody OrderDTO orderDTO){
+        return ResponseEntity.ok(new ResponseWrapper("Order created", orderService.save(orderDTO), HttpStatus.OK));
+    }
 
+    @GetMapping("/paymentMethod/{paymentMethod}")
+    public ResponseEntity<ResponseWrapper> getOrdersByPaymentMethod(@PathVariable PaymentMethod paymentMethod){
+        return ResponseEntity.ok(new ResponseWrapper("Orders retrieved", orderService.retrieveByPayment(paymentMethod), HttpStatus.OK));
+
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<ResponseWrapper> getOrdersByEmail(@PathVariable String email){
+        return ResponseEntity.ok(new ResponseWrapper("Orders retrieved", orderService.retrieveByEmail(email),HttpStatus.OK));
+    }
 }

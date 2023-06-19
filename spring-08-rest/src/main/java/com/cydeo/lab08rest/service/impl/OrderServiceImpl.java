@@ -2,6 +2,7 @@ package com.cydeo.lab08rest.service.impl;
 
 import com.cydeo.lab08rest.dto.OrderDTO;
 import com.cydeo.lab08rest.entity.Order;
+import com.cydeo.lab08rest.enums.PaymentMethod;
 import com.cydeo.lab08rest.mapper.MapperUtil;
 import com.cydeo.lab08rest.repository.OrderRepository;
 import com.cydeo.lab08rest.service.CartService;
@@ -76,6 +77,24 @@ public class OrderServiceImpl implements OrderService {
            throw new RuntimeException("no changes detected");
         }
 
+    }
+
+    @Override
+    public OrderDTO save(OrderDTO orderDTO) {
+        Order order = orderRepository.save(mapperUtil.convert(orderDTO, new Order()));
+        return mapperUtil.convert(order, new OrderDTO());
+    }
+
+    @Override
+    public List<OrderDTO> retrieveByPayment(PaymentMethod paymentMethod) {
+        List<Order> orders = orderRepository.findAllByPayment_PaymentMethod(paymentMethod);
+        return orders.stream().map(o -> mapperUtil.convert(o, new OrderDTO())).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<OrderDTO> retrieveByEmail(String email) {
+        return orderRepository.findAllByCustomer_Email(email).stream().map(order -> mapperUtil.convert(order, new OrderDTO()))
+                .collect(Collectors.toList());
     }
 
     private void validateRelatedFieldsAreExist(OrderDTO orderDTO){
