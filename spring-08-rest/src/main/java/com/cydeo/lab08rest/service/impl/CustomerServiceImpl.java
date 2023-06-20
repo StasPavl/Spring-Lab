@@ -41,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO update(CustomerDTO customerDTO) {
         Customer customer = customerRepository.findById(customerDTO.getId()).orElseThrow(() -> new RuntimeException("No such discount"));
-        Customer savedCustomer = customerRepository.save(customer);
+        Customer savedCustomer = customerRepository.save(mapperUtil.convert(customerDTO, new Customer()));
 
         return mapperUtil.convert(savedCustomer, new CustomerDTO());
     }
